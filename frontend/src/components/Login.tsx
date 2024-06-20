@@ -1,49 +1,47 @@
-import { LockOutlined } from "@mui/icons-material";
-import {
-  Container,
-  CssBaseline,
-  Box,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
-  Grid,
-} from "@mui/material";
-import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FC, useState } from 'react';
+import { Box, Container, CssBaseline, Typography, TextField, Button, Grid, Link } from '@mui/material';
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { app } from '../firebase';
 
 const Login: FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const auth = getAuth(app);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Add login logic here
+  const handleLogin = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      alert('Logged in user:' + user.email);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <Box
       sx={{
-        height: "100vh",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundImage: "url(https://asset.gecdesigns.com/img/wallpapers/aesthetic-landscape-reflection-background-hd-wallpaper-sr10012410-1706502139247-cover.webp)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        height: '100vh',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage: 'url(https://asset.gecdesigns.com/img/wallpapers/aesthetic-landscape-reflection-background-hd-wallpaper-sr10012410-1706502139247-cover.webp)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <Container maxWidth="xs">
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
             padding: 3,
             borderRadius: 2,
             boxShadow: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <Typography component="h1" variant="h5">
@@ -80,9 +78,13 @@ const Login: FC = () => {
             >
               Login
             </Button>
-            
-                <Link to="/register">Register</Link>
-              
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/register" variant="body2">
+                  Register
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>
@@ -91,3 +93,4 @@ const Login: FC = () => {
 };
 
 export default Login;
+
