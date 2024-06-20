@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from
 import { app, googleAuthProvider } from './firebase';
 
 interface AuthProviderProps {
-  children: React.ReactNode; // Define children prop explicitly
+  children: React.ReactNode; 
 }
 
 const AuthProvider: FC<AuthProviderProps> = ({ children }) => {

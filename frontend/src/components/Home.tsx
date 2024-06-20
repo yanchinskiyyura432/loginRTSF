@@ -1,9 +1,10 @@
 import React from 'react'
-import { Box, Container, CssBaseline, Typography, TextField, Button, Grid, Link } from '@mui/material';
+import { Box, Container, Button,  Link, CssBaseline } from '@mui/material';
 const Home = () => {
   return (
    
 <Container>
+  <CssBaseline/>
   <Link href="/login">
   <Button>Login</Button>
   </Link>

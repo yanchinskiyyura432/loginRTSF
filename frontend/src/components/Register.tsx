@@ -29,7 +29,6 @@ const Register: FC = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       
-      // Here you can handle the user object, for example, update profile, navigate, etc.
       console.log('Logged in with Google:', user);
     } catch (error) {
       console.error(error);
@@ -52,7 +51,7 @@ const Register: FC = () => {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('An error occurred. Please try again later.');
+        setError('An error occurred.');
       }
       console.error(error);
     }
