@@ -8,9 +8,12 @@ import {
   TextField,
   Typography,
   Link,
+  IconButton,
+  Icon,
 } from '@mui/material';
-import { createUserWithEmailAndPassword, getAuth, updateProfile, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth, updateProfile } from 'firebase/auth';
 import { app } from '../firebase';
+import { Google } from '@mui/icons-material';
 
 const Register: FC = () => {
   const auth = getAuth(app);
@@ -18,6 +21,20 @@ const Register: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      
+      // Here you can handle the user object, for example, update profile, navigate, etc.
+      console.log('Logged in with Google:', user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +65,7 @@ const Register: FC = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: 'url(https://wallpapershome.com/images/wallpapers/mountains-1920x1080-forest-sunset-25698.jpeg)',
+        backgroundImage: `url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpapershome.com%2Fdownload-wallpapers%2Fwindows%2Fmountains-forest-sunset-25698.html%3Fpage%3D90&psig=AOvVaw2yghkKHknwe5ZAB28flmyR&ust=1718977121637000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjH7fem6oYDFQAAAAAdAAAAABAx")`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -124,8 +141,19 @@ const Register: FC = () => {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Login
+                  Login
                 </Link>
+              </Grid>
+              
+            </Grid>
+            <Grid container justifyContent="center">
+            <Grid item>
+                <IconButton
+                  onClick={handleGoogleSignIn}
+                  sx={{ mb: 2 }}
+                >
+                  <Google />
+                </IconButton>
               </Grid>
             </Grid>
           </Box>
