@@ -65,12 +65,13 @@ const Register: FC = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpapershome.com%2Fdownload-wallpapers%2Fwindows%2Fmountains-forest-sunset-25698.html%3Fpage%3D90&psig=AOvVaw2yghkKHknwe5ZAB28flmyR&ust=1718977121637000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjH7fem6oYDFQAAAAAdAAAAABAx")`,
+        backgroundImage: `url(https://www.pixel4k.com/wp-content/uploads/2024/01/after-sunset-minimal-2024-4k-3840x2160_1705278513.jpg.webp)`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
